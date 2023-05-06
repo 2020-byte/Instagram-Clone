@@ -34,7 +34,20 @@ export default {
                 }
             ],
             validation: Rule => Rule.unique(),
-        },{
+        },
+        {
+            title: 'Followers',
+            name: 'followers',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [{type: 'user'}],
+                }
+            ],
+            validation: Rule => Rule.unique(),
+        },
+        {
             title: 'Bookmarks',
             name: 'bookmarks',
             type: 'array',

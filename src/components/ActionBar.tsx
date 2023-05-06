@@ -1,35 +1,52 @@
-import { useState } from "react";
 import BookmarkIcon from "./ui/icons/BookmarkIcon";
 import HeartIcon from "./ui/icons/HeartIcon";
 import { parseDate } from "@/util/date";
 import ToggleButton from "./ui/ToggleButton";
 import HeartFillIcon from "./ui/icons/HeartFillIcon";
 import BookmarkFillIcon from "./ui/icons/BookmarkFillIcon";
+import { Comment, SimplePost } from "@/model/post";
+import usePosts from "@/hooks/posts";
+import useMe from "@/hooks/me";
+import CommentForm from "./CommentForm";
 
 type Props = {
-    likes: string[];
-    username: string;
-    text?: string;
-    createdAt: string;
+    post: SimplePost;
+    children?: React.ReactNode;
+    onComment: (comment: Comment) => void;
 }
 
-export default function ActionBar({ likes, username, text, createdAt}: Props) {
-    const [liked, setLiked] = useState(false);
-    const [bookmarked, setBookmarked] = useState(false);
+export default function ActionBar({ post, children, onComment }: Props) {
+    const { id, likes, createdAt} = post;
+    const {user, setBookmark} = useMe();
+    const {setLike} = usePosts();
 
+    const liked = user ? likes.includes(user.username) : false;
+    const bookmarked = user?.bookmarks.includes(id) ?? false;
+
+    const handleLike = (like: boolean) => {
+        user && setLike(post, user.username, like);
+    };
+
+    const handleBookmark = (bookmark: boolean) => {
+        user && setBookmark(id, bookmark);
+    }
+
+    const handleComment = (comment: string) => {
+        user && onComment({comment, username: user.username, image: user.image})
+    }
     
     return (
         <>
             <div className='flex justify-between my-2 px-4'>
                 <ToggleButton 
                     toggled={liked} 
-                    onToggle={setLiked} 
+                    onToggle={handleLike} 
                     onIcon={<HeartFillIcon/>} 
                     offIcon={<HeartIcon/>}
                 />
                 <ToggleButton 
                     toggled={bookmarked} 
-                    onToggle={setBookmarked} 
+                    onToggle={handleBookmark} 
                     onIcon={<BookmarkFillIcon/>} 
                     offIcon={<BookmarkIcon/>}
                 />
@@ -39,13 +56,9 @@ export default function ActionBar({ likes, username, text, createdAt}: Props) {
                     {`${likes?.length ?? 0} 
                     ${likes?.length > 1 ? 'likes':'like'}`}
                 </p>
-                {text && (
-                    <p>
-                        <span className="font-bold mr-1">{username}</span>
-                        {text}
-                    </p>
-                )}
+                {children}
                 <p className='text-xs text-neutral-500 uppercase my-2'>{parseDate(createdAt)}</p>
+                <CommentForm onPostComment={handleComment}/>
             </div>
         </>
     );

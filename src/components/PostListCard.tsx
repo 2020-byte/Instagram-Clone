@@ -1,13 +1,13 @@
 'use client';
-import { SimplePost } from "@/model/post"
+import { Comment, SimplePost } from "@/model/post"
 import { useState } from 'react';
 import Image from "next/image";
-import CommentForm from "./CommentForm";
 import ActionBar from "./ActionBar";
 import MordalPortal from "./ModalPortal";
 import PostModal from "./PostModal";
 import PostDetail from "./PostDetail";
 import PostUserAvatar from "./PostUserAvatar";
+import usePosts from "@/hooks/posts";
 
 type Props = {
     post: SimplePost;
@@ -15,8 +15,14 @@ type Props = {
 }
 
 export default function PostListCard({post, priority = false}:Props) {
-    const { userImage, username, image, createdAt, likes, text } = post;
+    const { userImage, username, image, comments, text } = post;
     const [openModal, setOpenModal] = useState(false);
+    const { postComment } = usePosts();
+
+    const handlePostComment = (comment: Comment) => {
+        postComment(post, comment);
+    }
+
     return (
         <article className='rounded-lg shadow-md border border-gray-200'>
             <PostUserAvatar image={userImage} username={username} />
@@ -29,13 +35,20 @@ export default function PostListCard({post, priority = false}:Props) {
                 priority={priority}
                 onClick={() => setOpenModal(true)}
             />
-            <ActionBar
-                likes={likes}
-                username={username}
-                text={text}
-                createdAt={createdAt}
-            />
-            <CommentForm/>
+            <ActionBar post={post} onComment={handlePostComment}>
+                <p>
+                    <span className="font-bold mr-1">{username}</span>
+                    {text}
+                </p>
+                {comments > 1 && (
+                    <button 
+                        onClick={() => setOpenModal(true)}
+                        className='font-bold my-2 text-sky-500'
+                    >
+                        {`View all ${comments} comments`}
+                    </button>
+                )}
+            </ActionBar>
             {openModal && (
                 <MordalPortal>
                     <PostModal onClose={() => setOpenModal(false)}>

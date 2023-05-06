@@ -18,7 +18,7 @@ export async function addUser({id, username, email, name, image}: OAuthUser) {
         image,
         following: [],
         followers: [],
-        bookamrks: [],
+        bookmarks: [],
     });
 }
 
@@ -29,7 +29,7 @@ export async function getUserByUsername(username: string) {
             "id": _id,
             following[]->{username, image},
             followers[]->{username, image},
-            "bookmarks":bookmarks[]->id
+            "bookmarks":bookmarks[]->_id
         }`
     )
 }
@@ -70,4 +70,22 @@ export async function getUserForProfile(username: string) {
         followers: user.followers ?? 0,
         posts: user.posts ?? 0,
     }))
+}
+
+export async function addBookmark(userId: string, postId: string) {
+    return client.patch(userId)
+    .setIfMissing({bookmarks: []})
+    .append('bookmarks', [
+        {
+            _ref: postId,
+            _type: 'reference',
+        },
+    ])
+    .commit({autoGenerateArrayKeys: true});
+}
+
+export async function removeBookmark(userId: string, postId: string) {
+    return client.patch(userId)
+    .unset([`bookmarks[_ref=="${postId}"]`])
+    .commit();
 }

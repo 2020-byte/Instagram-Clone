@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
         if (user) {
             session.user = {
                 ...user,
-                username: user.email?.split('@')[0]||'',
+                username: user.email?.split('@')[0] === 'gmmoon0824' ? '2020byte' : user.email?.split('@')[0] || '',
                 id: token.id as string,
             }
         }

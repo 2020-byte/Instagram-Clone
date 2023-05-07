@@ -2,7 +2,8 @@
 ## URL: https://instagram-clone-eight-nu.vercel.app/
 
 <img width="815" alt="image" src="https://user-images.githubusercontent.com/76520105/236652879-8b744f14-4c87-448a-8acf-15622be910b1.png">
-
+<img width="811" alt="image" src="https://user-images.githubusercontent.com/76520105/236653057-e58677d1-bd48-4e87-8e9e-d253d1c428ca.png">
+<img width="856" alt="image" src="https://user-images.githubusercontent.com/76520105/236653079-1cc890ab-eb7b-4e60-99c4-77f6e30c91c2.png">
 </br>
 
 Using Next.js, I created a server-side-rendered React application with dynamic routing and client-side navigation. I also used Next.js API routes to create serverless functions for handling user authentication and API requests.

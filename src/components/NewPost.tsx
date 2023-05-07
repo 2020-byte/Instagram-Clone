@@ -56,7 +56,7 @@ export default function NewPost({ user: {username, image} }: Props) {
         setLoading(true);
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('test', textRef.current?.value ?? '')
+        formData.append('text', textRef.current?.value ?? '')
 
         fetch('/api/posts', {method: 'POST', body: formData})
         .then(res => {

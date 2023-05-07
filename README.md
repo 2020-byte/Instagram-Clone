@@ -1,6 +1,6 @@
 # Instantgram (Instagram clone)
 ## URL: https://instagram-clone-eight-nu.vercel.app/
-(Just in case, if button doesn't work, refresh page)
+(Just in case, if the button doesn't work, please refresh the page)
 
 <img width="924" alt="image" src="https://user-images.githubusercontent.com/76520105/236653163-0c5cc624-50fd-435a-aa2f-349d1934ae96.png">
 <img width="815" alt="image" src="https://user-images.githubusercontent.com/76520105/236652879-8b744f14-4c87-448a-8acf-15622be910b1.png">

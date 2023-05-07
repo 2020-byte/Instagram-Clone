@@ -2,6 +2,15 @@
 ## URL: https://instagram-clone-eight-nu.vercel.app/
 (Just in case, if the button doesn't work, please refresh the page)
 
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Sanity](https://img.shields.io/badge/Sanity-%23F96854?style=for-the-badge&logo=sanity&logoColor=white)
+
+
+
+
+
 <img width="924" alt="image" src="https://user-images.githubusercontent.com/76520105/236653163-0c5cc624-50fd-435a-aa2f-349d1934ae96.png">
 <img width="815" alt="image" src="https://user-images.githubusercontent.com/76520105/236652879-8b744f14-4c87-448a-8acf-15622be910b1.png">
 <img width="811" alt="image" src="https://user-images.githubusercontent.com/76520105/236653057-e58677d1-bd48-4e87-8e9e-d253d1c428ca.png">
